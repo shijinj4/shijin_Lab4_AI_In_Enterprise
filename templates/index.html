@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Market Predictor</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #ff9800;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #e68900;
+        }
+        h2 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fish Market Predictor</h2>
+        <form action="/predict" method="POST">
+            <input type="number" name="Weight" placeholder="Weight (g)" required>
+            <input type="number" name="Length1" placeholder="Length1 (cm)" required>
+            <input type="number" name="Length2" placeholder="Length2 (cm)" required>
+            <input type="number" name="Length3" placeholder="Length3 (cm)" required>
+            <input type="number" name="Height" placeholder="Height (cm)" required>
+            <input type="number" name="Width" placeholder="Width (cm)" required>
+            <button type="submit">Predict</button>
+        </form>
+        <h3>{{ prediction }}</h3>
+    </div>
+</body>
+</html>

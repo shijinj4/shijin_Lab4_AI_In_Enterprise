@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Market Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input { display: block; margin: 10px auto; padding: 8px; }
+        button { padding: 10px 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Fish Market Predictor</h2>
+    <input type="number" id="length1" placeholder="Length1 (cm)" required>
+    <input type="number" id="length2" placeholder="Length2 (cm)" required>
+    <input type="number" id="length3" placeholder="Length3 (cm)" required>
+    <input type="number" id="height" placeholder="Height (cm)" required>
+    <input type="number" id="width" placeholder="Width (cm)" required>
+    <button onclick="predictFish()">Predict</button>
+    <h3 id="output"></h3>
+
+    <script>
+        function predictFish() {
+            let data = {
+                Length1: parseFloat(document.getElementById('length1').value),
+                Length2: parseFloat(document.getElementById('length2').value),
+                Length3: parseFloat(document.getElementById('length3').value),
+                Height: parseFloat(document.getElementById('height').value),
+                Width: parseFloat(document.getElementById('width').value)
+            };
+            
+            fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                document.getElementById('output').innerText = `Predicted Weight: ${result.Predicted_Weight} g, Species: ${result.Predicted_Species}`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
